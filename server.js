@@ -1,0 +1,36 @@
+import express from "express";
+import colors from "colors";
+import dotenv from "dotenv";
+import morgan from "morgan";
+import connectDB from "./config/db.js";
+
+// configure env
+// dotenv.config({path: ''})  // give path if your .env file not in root folder
+dotenv.config(); // use this for root folder
+
+// configure database
+
+// rest object
+const app = express();
+
+// middlewares
+app.use(express.json());
+app.use(morgan("dev"));
+
+// rest api
+app.get("/", (req, res) => {
+  res.json({ messege: "hello first application" });
+});
+
+//port
+const PORT = process.env.PORT || 8080;
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`app running on port ${PORT}`.bgBlack.blue);
+    });
+  })
+  .catch((error) => {
+    console.log(`database not connected so port will not start ${error}`);
+  });
