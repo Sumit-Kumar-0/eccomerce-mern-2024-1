@@ -1,0 +1,12 @@
+{
+  "name": "mern-eccomerce-1",
+  "version": "1.0.0",
+  "description": "complete eccomerce app on mern stack technology",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sumit kumar",
+  "license": "MIT"
+}
