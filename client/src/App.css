@@ -1,0 +1,27 @@
+main.main-container {
+  height: calc(100vh - 243px);
+}
+
+/* pagr not found  */
+.page-not-found-container, .contact-container {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.page-not-found-container{
+    background: #ffeeee;
+}
+.page-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.page-not-found h2 {
+    font-size: 80px;
+}
+.page-not-found h1 {
+    font-size: 120px;
+}
+

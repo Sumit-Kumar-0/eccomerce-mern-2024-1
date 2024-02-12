@@ -1,0 +1,26 @@
+.footer-container {
+    display: flex;
+    justify-content: center;
+    background: #000;
+}
+footer.footer {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    color: #fff;
+}
+ul.footer__navlist {
+    display: flex;
+    gap: 40px;
+}
+.footer a.navlink {
+    color: #fff;
+}
+
+.footer a.navlink:hover, .footer a.navlink.active {
+    color: #004ab1;
+}

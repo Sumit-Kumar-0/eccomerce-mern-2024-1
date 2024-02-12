@@ -1,0 +1,19 @@
+button.button {
+    padding: 16px 28px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+button.primary-btn {
+    background: #004ab1;
+    border: 2px solid #004ab1;
+    color: #fff;
+}
+button.primary-btn:hover {
+    background: #fff;
+    border: 2px solid #004ab1;
+    color: #004ab1;
+}

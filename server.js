@@ -3,12 +3,11 @@ import colors from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoute.js"
 
 // configure env
 // dotenv.config({path: ''})  // give path if your .env file not in root folder
 dotenv.config(); // use this for root folder
-
-// configure database
 
 // rest object
 const app = express();
@@ -17,9 +16,12 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 
+// routes
+app.use("/api/v1/auth", authRoutes)
+
 // rest api
 app.get("/", (req, res) => {
-  res.json({ messege: "hello first application" });
+  res.json({ messege: "hello first application!!" });
 });
 
 //port

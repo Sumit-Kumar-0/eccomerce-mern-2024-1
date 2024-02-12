@@ -1,0 +1,12 @@
+a.navlink {
+    padding: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #000;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  a.navlink:hover, a.navlink.active {
+    color: #004ab1;
+  }
