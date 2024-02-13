@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Layout from "../../components/layout/Layout";
 import InputField from "./InputField";
 import Button from "../../components/buttons/Button";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import FormContainer from "./FormContainer";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -12,6 +15,7 @@ function Register() {
     phone: "",
     address: "",
   });
+  const navigate = useNavigate();
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -20,23 +24,36 @@ function Register() {
       [name]: value,
     }));
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    toast.success(`hello ${formData.name} your registration successful!!`)
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      phone: "",
-      address: "",
-    });
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        formData
+      );
+      if (res && res.data.success) {
+        toast.success(`hello ${formData.name} your registration successful!!`);
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          phone: "",
+          address: "",
+        });
+        navigate("/login");
+        localStorage.setItem("token", res.data.token);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("somthing went wrong 123");
+    }
   };
   return (
     <Layout title="register your account - eccomerce app">
       <div className="register-container">
-        <form className="register" onSubmit={submitHandler}>
-          <h2>Register your account</h2>
+        <FormContainer heading="Register your account" onSubmit={submitHandler}>
           <InputField
             type="text"
             placeholder="type your name"
@@ -77,8 +94,8 @@ function Register() {
             value={formData.address}
             onChange={changeHandler}
           />
-          <Button type="submit" text="send" className="primary-btn" />
-        </form>
+          <Button type="submit" text="register" className="primary-btn" />
+        </FormContainer>
       </div>
     </Layout>
   );

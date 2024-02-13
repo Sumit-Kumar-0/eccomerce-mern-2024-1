@@ -30,7 +30,7 @@ export const registerController = async (req, res) => {
     // existing user
     if (existingUser) {
       return res.status(200).send({
-        success: true,
+        success: false,
         message: "user is already register with this email please login!",
       });
     }
@@ -45,10 +45,14 @@ export const registerController = async (req, res) => {
       address,
     }).save();
 
+    const token = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
     res.status(201).send({
       success: true,
       message: "user register successfully",
       user,
+      token
     });
   } catch (error) {
     console.log(error);
@@ -89,10 +93,6 @@ export const loginController = async (req, res) => {
       });
     }
 
-    const token = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
-
     res.status(200).send({
       success: "true",
       message: `${user.name}, You are login successfully!`,
@@ -101,9 +101,7 @@ export const loginController = async (req, res) => {
         email: user.email,
         phone: user.phone,
         address: user.address,
-        role: user.role
-      },
-      token
+      }
     });
   } catch (error) {
     console.log("error in login", error);
