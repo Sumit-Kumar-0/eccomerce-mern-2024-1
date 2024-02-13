@@ -11,9 +11,9 @@ function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    token: localStorage.getItem("token"),
   });
   const navigate = useNavigate();
-
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -25,20 +25,14 @@ function Login() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.create({
-        baseURL: `${process.env.REACT_APP_API}/api/v1/auth/login`, // Adjust base URL
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Add token to headers
-        },
+      const res = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/auth/login`,
         formData
-      });
+      );
       if (res.data.success) {
         toast.success(`hello ${formData.name} you are login successfully!!`);
-        setFormData({
-          email: "",
-          password: "",
-        });
-        sessionStorage.getItem("token");
+        let token = localStorage.getItem("token");
+        console.log(token);
         navigate("/");
       } else {
         toast.error(res.data.message);

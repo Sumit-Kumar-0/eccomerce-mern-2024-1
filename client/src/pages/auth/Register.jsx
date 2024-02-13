@@ -29,7 +29,10 @@ function Register() {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/register`,
-        formData
+        formData,
+        {
+          "Content-Type": "application/json",
+        }
       );
       if (res && res.data.success) {
         toast.success(`hello ${formData.name} your registration successful!!`);

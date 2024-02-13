@@ -12,15 +12,9 @@ export const requireLogin = async (req, res, next) => {
     next();
   } catch (error) {
     console.error("Error while decoding login token:", error);
-    
-    if (error.name === "TokenExpiredError") {
-      return res
-        .status(401)
-        .json({ success: false, message: "Token has expired" });
-    }
     return res
       .status(401)
-      .json({ success: false, message: "token", error});
+      .json({ success: false, message: "Error while decoding login token!!!!!" });
   }
 };
 

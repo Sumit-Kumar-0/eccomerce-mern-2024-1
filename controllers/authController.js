@@ -93,6 +93,7 @@ export const loginController = async (req, res) => {
       });
     }
 
+    console.log(req.token);
     res.status(200).send({
       success: "true",
       message: `${user.name}, You are login successfully!`,
