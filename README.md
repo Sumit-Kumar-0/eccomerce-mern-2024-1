@@ -171,7 +171,7 @@ export default userModel;
 
 
 
-6. now we will make routes for authcontroller so first route will be register with post method here we need to made router object which is property of express so here is the code...
+6. now we will make routes for authController so first route will be register with post method here we need to made router object which is property of express so here is the code...
 routes/authRoute.js 
 
 import express from "express";
