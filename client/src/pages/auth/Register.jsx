@@ -43,7 +43,7 @@ function Register() {
           phone: "",
           address: "",
         });
-        navigate("/login");
+        // navigate("/login");
         localStorage.setItem("token", res.data.token);
       } else {
         toast.error(res.data.message);
